@@ -1,0 +1,25 @@
+# Virtual environment lokal & cache Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Version control & Git metadata
+.git/
+.gitignore
+
+# Secrets & local environment configs
+.env
+*.env.local
+
+# Dokumen dan arsip pengumpulan tugas
+*.zip
+*.pdf
+
+# Konfigurasi editor & sistem operasi
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
