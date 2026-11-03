@@ -29,51 +29,77 @@ SirkelKomting_dev_ops/
     └── students.html
 ```
 
-## Panduan Pengoperasian Container
+## Panduan Pengoperasian Container (Podman / Docker)
 
 ### 1. Build Container Image
+Menggunakan **Podman**:
 ```bash
-docker build -f Containerfile -t sirkelkomting-app:1.0 .
+podman build -t sirkelkomting-app:1.0 .
 ```
+*(Atau Docker: `docker build -f Containerfile -t sirkelkomting-app:1.0 .`)*
 
 ### 2. Menjalankan Container
+Menggunakan **Podman**:
 ```bash
-docker run -d --name sirkelkomting-web -p 8080:5000 -e APP_MESSAGE="Selamat datang di StudentHub - Kelompok SirkelKomting!" sirkelkomting-app:1.0
+podman run --cgroups=disabled -d --name sirkelkomting-web -p 8080:5000 -e APP_MESSAGE="Selamat datang di Portal Informasi Mahasiswa - Kelompok SirkelKomting!" sirkelkomting-app:1.0
 ```
-Akses aplikasi melalui browser: [http://localhost:8080](http://localhost:8080)
+*(Atau Docker: `docker run -d --name sirkelkomting-web -p 8080:5000 -e APP_MESSAGE="Selamat datang di Portal Informasi Mahasiswa - Kelompok SirkelKomting!" sirkelkomting-app:1.0`)*
 
-### 3. Perintah Pemeriksaan Container
+Akses aplikasi melalui browser:
+- Beranda: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+- Data Mahasiswa: [http://127.0.0.1:8080/students](http://127.0.0.1:8080/students)
+- Health Check: [http://127.0.0.1:8080/health](http://127.0.0.1:8080/health)
+
+### 3. Perintah Pemeriksaan Container (Podman)
 - Melihat status container:
   ```bash
-  docker ps
+  podman ps
   ```
 - Melihat logging container:
   ```bash
-  docker logs sirkelkomting-web
+  podman logs sirkelkomting-web
   ```
 - Memeriksa konfigurasi dan metadata container:
   ```bash
-  docker inspect sirkelkomting-web
+  podman inspect sirkelkomting-web
   ```
-- Menjalankan perintah di dalam container (verifikasi non-root user):
+- Menjalankan perintah di dalam container (verifikasi non-root user `appuser`):
   ```bash
-  docker exec sirkelkomting-web whoami
+  podman exec sirkelkomting-web whoami
   ```
 - Menghentikan dan menghapus container:
   ```bash
-  docker stop sirkelkomting-web
-  docker rm sirkelkomting-web
+  podman stop sirkelkomting-web
+  podman rm sirkelkomting-web
   ```
 
-## Distribusi Image (Docker Hub Registry)
+## Distribusi Image ke Container Registry (Docker Hub)
+
+### 1. Login ke Docker Hub
 ```bash
-# Tag image sesuai nama repository Docker Hub
-docker tag sirkelkomting-app:1.0 <dockerhub_username>/sirkelkomting-app:1.0
-
-# Push ke Docker Hub
-docker push <dockerhub_username>/sirkelkomting-app:1.0
-
-# Pull dan uji kembali
-docker pull <dockerhub_username>/sirkelkomting-app:1.0
-docker run -d --name sirkelkomting-pulled -p 8081:5000 <dockerhub_username>/sirkelkomting-app:1.0
+podman login docker.io
 ```
+
+### 2. Memberikan Tag Versi pada Image
+```bash
+podman tag localhost/sirkelkomting-app:1.0 docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+```
+
+### 3. Push Image ke Docker Hub
+```bash
+podman push docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+```
+
+### 4. Pembuktian Pull dan Menjalankan Kembali
+```bash
+# Hapus image lokal untuk pembuktian
+podman rmi docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+
+# Pull kembali dari registry
+podman pull docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+
+# Jalankan container dari image hasil pull (uji pada port 8081)
+podman run --cgroups=disabled -d --name sirkelkomting-pulled -p 8081:5000 -e APP_MESSAGE="StudentHub berjalan dari image hasil pull Docker Hub!" docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+```
+Akses aplikasi hasil pull melalui browser: [http://127.0.0.1:8081](http://127.0.0.1:8081)
+
