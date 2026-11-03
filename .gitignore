@@ -21,3 +21,5 @@ Thumbs.db
 # Archive & document files (tidak di-commit ke Git)
 *.zip
 *.pdf
+*.docx
+generate_report.py
