@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Portal SirkelKomting</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-bg: #eff6ff;
+            --accent-border: #bfdbfe;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 24px;
+        }
+
+        .header {
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e0e7ff;
+            color: #4338ca;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .env-banner {
+            background-color: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+
+        .env-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .env-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e3a8a;
+        }
+
+        .info-section {
+            margin: 24px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .info-box {
+            background: #f1f5f9;
+            padding: 14px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .info-box strong {
+            display: block;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+
+        .info-box span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: #f1f5f9;
+            color: #334155;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <span class="badge">Kelompok {{ group_name }}</span>
+                <h1>Portal Sistem Informasi Mahasiswa</h1>
+                <p class="subtitle">Aplikasi Web Berbasis Container untuk Proyek UTS DevOps 2026</p>
+            </div>
+
+            <div class="env-banner">
+                <div class="env-label">Environment Variable (APP_MESSAGE)</div>
+                <div class="env-value">{{ app_message }}</div>
+            </div>
+
+            <div class="info-section">
+                <h3>Arsitektur & Spesifikasi Aplikasi:</h3>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <strong>Arsitektur</strong>
+                        <span>Monolithic & Stateless</span>
+                    </div>
+                    <div class="info-box">
+                        <strong>Backend Framework</strong>
+                        <span>Python Flask</span>
+                    </div>
+                    <div class="info-box">
+                        <strong>Container Target</strong>
+                        <span>Docker / Podman (Non-Root)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="/students" class="btn btn-primary">Lihat Data Mahasiswa &rarr;</a>
+                <a href="/health" class="btn btn-secondary" target="_blank">Health Check API (/health)</a>
+            </div>
+        </div>
+
+        <footer>
+            &copy; 2026 Kelompok {{ group_name }} - UTS DevOps. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
