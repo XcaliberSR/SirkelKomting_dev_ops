@@ -82,21 +82,21 @@ podman login docker.io
 
 ### 2. Memberikan Tag Versi pada Image
 ```bash
-podman tag localhost/sirkelkomting-app:1.0 docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+podman tag localhost/sirkelkomting-app:1.0 docker.io/xcalibersr/sirkelkomting-app:1.0
 ```
 
 ### 3. Push Image ke Docker Hub
 ```bash
-podman push docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+podman push docker.io/xcalibersr/sirkelkomting-app:1.0
 ```
 
 ### 4. Pembuktian Pull dan Menjalankan Kembali
 ```bash
 # Hapus image lokal untuk pembuktian
-podman rmi docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+podman rmi docker.io/xcalibersr/sirkelkomting-app:1.0
 
 # Pull kembali dari registry
-podman pull docker.io/<username_dockerhub>/sirkelkomting-app:1.0
+podman pull docker.io/xcalibersr/sirkelkomting-app:1.0
 
 # Jalankan container dari image hasil pull (uji pada port 8081)
 podman run --cgroups=disabled -d --name sirkelkomting-pulled -p 8081:5000 -e APP_MESSAGE="StudentHub berjalan dari image hasil pull Docker Hub!" docker.io/<username_dockerhub>/sirkelkomting-app:1.0
