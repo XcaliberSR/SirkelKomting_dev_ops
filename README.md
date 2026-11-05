@@ -13,15 +13,15 @@ Aplikasi web sederhana berbasis Python Flask yang dikemas sebagai container imag
 
 | No | Nama | NIM | Peran |
 |----|------|-----|-------|
-| 1 | GANTI_NAMA_1 | GANTI_NIM_1 | Project Lead & System Architect |
-| 2 | GANTI_NAMA_2 | GANTI_NIM_2 | Backend & Frontend Developer |
-| 3 | GANTI_NAMA_3 | GANTI_NIM_3 | DevOps Engineer (Containerization) |
-| 4 | GANTI_NAMA_4 | GANTI_NIM_4 | DevOps Engineer (Registry & QA) |
+| 1 | Cherish Evangeline | 241110597 | Project Lead & System Architect |
+| 2 | Ethan Wilbert | 241110939 | Backend & Frontend Developer |
+| 3 | Justin Wisely | 241110868 | DevOps Engineer (Containerization) |
+| 4 | Richie Sanjiro | 241110236 | DevOps Engineer (Registry & QA) |
 
 ## Tautan Proyek
 
 - **Docker Hub**: https://hub.docker.com/r/xcalibersr/sirkelkomting-app
-- **GitHub**: https://github.com/GANTI_USERNAME_GITHUB/SirkelKomting_dev_ops
+- **GitHub**: https://github.com/XcaliberSR/SirkelKomting_dev_ops
 - **Video Presentasi (8-12 menit)**: GANTI_LINK_VIDEO
 
 ## Fitur Aplikasi
@@ -67,7 +67,7 @@ SirkelKomting_dev_ops/
 ### 1. Build image
 
 ```bash
-podman build --format docker -t sirkelkomting-app:1.1 .
+podman build --format docker -t sirkelkomting-app:latest .
 ```
 
 `--format docker` diperlukan agar instruksi `HEALTHCHECK` tersimpan di image (format OCI bawaan Podman mengabaikannya).
@@ -75,22 +75,22 @@ podman build --format docker -t sirkelkomting-app:1.1 .
 Dengan Docker:
 
 ```bash
-docker build -f Containerfile -t sirkelkomting-app:1.1 .
+docker build -f Containerfile -t sirkelkomting-app:latest .
 ```
 
 ### 2. Melihat ukuran dan layer image
 
 ```bash
-podman images
-podman image history sirkelkomting-app:1.1
+podman images sirkelkomting-app:latest
+podman image history sirkelkomting-app:latest
 ```
 
 ### 3. Menjalankan container
 
 ```bash
-podman run --cgroups=disabled -d --name sirkelkomting-web -p 8080:5000 \
-  -e APP_MESSAGE="Selamat datang di Portal Informasi Mahasiswa - Kelompok SirkelKomting!" \
-  sirkelkomting-app:1.1
+podman run --cgroups=disabled -d --name sirkelkomting-web -p 8080:5000 `
+  -e APP_MESSAGE="Selamat datang di Portal Informasi Mahasiswa - Kelompok SirkelKomting!" `
+  sirkelkomting-app:latest
 ```
 
 Akses di browser:
@@ -132,14 +132,13 @@ podman login docker.io
 ### 2. Tagging versi
 
 ```bash
-podman tag localhost/sirkelkomting-app:1.1 docker.io/xcalibersr/sirkelkomting-app:1.1
-podman tag localhost/sirkelkomting-app:1.1 docker.io/xcalibersr/sirkelkomting-app:latest
+podman tag localhost/sirkelkomting-app:latest docker.io/xcalibersr/sirkelkomting-app:latest
+podman tag localhost/sirkelkomting-app:latest docker.io/xcalibersr/sirkelkomting-app:latest
 ```
 
 ### 3. Push
 
 ```bash
-podman push docker.io/xcalibersr/sirkelkomting-app:1.1
 podman push docker.io/xcalibersr/sirkelkomting-app:latest
 ```
 
@@ -148,15 +147,15 @@ podman push docker.io/xcalibersr/sirkelkomting-app:latest
 ```bash
 # Hapus container dan image lokal
 podman rm -f sirkelkomting-web
-podman rmi localhost/sirkelkomting-app:1.1 docker.io/xcalibersr/sirkelkomting-app:1.1 docker.io/xcalibersr/sirkelkomting-app:latest
+podman rmi localhost/sirkelkomting-app:latest docker.io/xcalibersr/sirkelkomting-app:latest docker.io/xcalibersr/sirkelkomting-app:latest
 
 # Pull dari Docker Hub
-podman pull docker.io/xcalibersr/sirkelkomting-app:1.1
+podman pull docker.io/xcalibersr/sirkelkomting-app:latest
 
 # Jalankan dari image hasil pull di port 8081
-podman run --cgroups=disabled -d --name sirkelkomting-pulled -p 8081:5000 \
-  -e APP_MESSAGE="Aplikasi berhasil berjalan dari image hasil pull Docker Hub!" \
-  docker.io/xcalibersr/sirkelkomting-app:1.1
+podman run --cgroups=disabled -d --name sirkelkomting-pulled -p 8081:5000 `
+  -e APP_MESSAGE="Aplikasi berhasil berjalan dari image hasil pull Docker Hub!" `
+  docker.io/xcalibersr/sirkelkomting-app:latest
 
 # Verifikasi
 podman exec sirkelkomting-pulled whoami

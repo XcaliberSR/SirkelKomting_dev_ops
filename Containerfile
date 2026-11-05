@@ -30,7 +30,7 @@ LABEL org.opencontainers.image.title="sirkelkomting-app" \
       org.opencontainers.image.description="Portal Informasi Mahasiswa - Proyek UTS Pengembangan dan Operasi" \
       org.opencontainers.image.version="1.1" \
       org.opencontainers.image.authors="Kelompok SirkelKomting" \
-      org.opencontainers.image.source="https://github.com/GANTI_USERNAME_GITHUB/SirkelKomting_dev_ops"
+      org.opencontainers.image.source="https://github.com/XcaliberSR/SirkelKomting_dev_ops"
 
 # PYTHONDONTWRITEBYTECODE=1 : tidak menulis file .pyc
 # PYTHONUNBUFFERED=1        : log langsung ke stdout (terbaca podman logs)
