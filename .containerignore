@@ -14,9 +14,19 @@ __pycache__/
 .env
 *.env.local
 
+# Berkas build & dokumentasi (tidak dibutuhkan di dalam image)
+Containerfile
+Dockerfile
+.containerignore
+.dockerignore
+README.md
+docs/
+screenshots/
+
 # Dokumen dan arsip pengumpulan tugas
 *.zip
 *.pdf
+*.docx
 
 # Konfigurasi editor & sistem operasi
 .vscode/

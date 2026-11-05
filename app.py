@@ -1,4 +1,5 @@
 import os
+import socket
 import logging
 from flask import Flask, render_template, jsonify, request
 
@@ -59,9 +60,13 @@ def health():
     return jsonify({
         "status": "healthy",
         "application": "SirkelKomting DevOps Portal",
-        "version": "1.0.0"
+        "version": "1.1.0",
+        # Hostname container = ID container; membuktikan request dilayani container mana
+        "hostname": socket.gethostname()
     })
 
+# Di dalam container, aplikasi dijalankan oleh gunicorn (lihat CMD di Containerfile).
+# Blok di bawah hanya untuk menjalankan aplikasi secara lokal saat development.
 if __name__ == "__main__":
     # Host 0.0.0.0 agar aplikasi dapat diakses melalui port mapping container
     app.run(host="0.0.0.0", port=5000, debug=False)
