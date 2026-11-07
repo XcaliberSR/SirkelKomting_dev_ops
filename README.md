@@ -132,23 +132,23 @@ podman login docker.io
 ### 2. Tagging versi
 
 ```bash
-podman tag localhost/sirkelkomting-app:1.0 docker.io/xcalibersr/sirkelkomting-app:1.0
+podman tag localhost/sirkelkomting-app:latest docker.io/xcalibersr/sirkelkomting-app:latest
 ```
 
 ### 3. Push
 
 ```bash
-podman push docker.io/xcalibersr/sirkelkomting-app:1.0
+podman push docker.io/xcalibersr/sirkelkomting-app:latest
 ```
 
 ### 4. Pembuktian pull dan run ulang
 
 ```bash
 # Hapus image lokal untuk pembuktian
-podman rmi docker.io/xcalibersr/sirkelkomting-app:1.0
+podman rmi docker.io/xcalibersr/sirkelkomting-app:latest
 
 # Pull kembali dari registry
-podman pull docker.io/xcalibersr/sirkelkomting-app:1.0
+podman pull docker.io/xcalibersr/sirkelkomting-app:latest
 
 # Jalankan dari image hasil pull di port 8081
 podman run --cgroups=disabled -d --name sirkelkomting-pulled -p 8081:5000 `
