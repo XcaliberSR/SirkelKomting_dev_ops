@@ -20,9 +20,9 @@ Aplikasi web sederhana berbasis Python Flask yang dikemas sebagai container imag
 
 ## Tautan Proyek
 
-- **Docker Hub**: https://hub.docker.com/r/xcalibersr/sirkelkomting-app
+- **Docker Hub**: [https://hub.docker.com/r/xcalibersr/sirkelkomting-app](https://hub.docker.com/r/xcalibersr/sirkelkomting-app/tags)
 - **GitHub**: https://github.com/XcaliberSR/SirkelKomting_dev_ops
-- **Video Presentasi (8-12 menit)**: GANTI_LINK_VIDEO
+- **Video Presentasi (8-12 menit)**: https://mikroskilacid-my.sharepoint.com/:v:/g/personal/richie_sanjiro_students_mikroskil_ac_id/IQDNAXOhD-VnRJQJAptWERRUAQjS_y1u6d9he4jlXIUmouY?e=bM6Uti
 
 ## Fitur Aplikasi
 
